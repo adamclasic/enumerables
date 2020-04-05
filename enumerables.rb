@@ -40,25 +40,46 @@ module Enumerable
   
  # my all
 
- def my_all?
+  def my_all?
 
-  unless block_given?
+    unless block_given?
+      i = 0
+      while i < self.length do
+        return false unless self[i]
+        i += 1
+      end
+      return true
+    end
+
+    bool = true
     i = 0
     while i < self.length do
-      return false unless self[i]
+      bool = false unless yield(self[i]) 
       i += 1
     end
-    return true
+    bool
   end
 
-  bool = true
-  i = 0
-  while i < self.length do
-    bool = false unless yield(self[i]) 
-    i += 1
+  def my_any?
+
+    unless block_given?
+      i = 0
+      while i < self.length do
+        return true unless self[i]
+        i += 1
+      end
+      return false
+    end
+    # puts 'block is given'
+    bool = false
+    i = 0
+    while i < self.length do
+      bool = true if yield(self[i]) 
+      i += 1
+    end
+    bool
+
   end
-  bool
- end
 
 end
 
@@ -76,6 +97,17 @@ p [-8, -9, -6, 0].my_all? { |n| n < 0 } # => false
 p [-8, -9, -6, 0].my_all? # => true
 p [-8, -9, -6, nil].my_all? # => false
 p [-8, -9, -6, false].my_all? # => false
+p [].my_all? # => true
+
+puts "---------"
+
+p [-8, -9, -6].my_any? { |n| n < 0 } # => true
+p [3, 5, 8, 11].my_any? { |n| n.odd? } # => true
+p [-8, -9, -6, 0].my_any? { |n| n < 0 } # => true
+p [-8, -9, -6, 0].my_any? # => false
+p [-8, -9, -6, nil].my_any? # => true
+p [-8, -9, -6, false].my_any? # => ture
+p [].my_any? # => false
 
 puts "---------"
 
