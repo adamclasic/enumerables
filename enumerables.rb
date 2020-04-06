@@ -9,7 +9,6 @@ module Enumerable
         yield(self[i])
         i += 1
       end
-
   end
   
   # my_each_with_index
@@ -21,14 +20,12 @@ module Enumerable
       yield(i,self[i])
       i += 1
     end
-    
   end
 
   # my_select
 
   def my_select
     return to_enum(:my_select) unless block_given?
-    
     arr = []
     i = 0
     while i < self.length do
@@ -41,7 +38,6 @@ module Enumerable
  # my all
 
   def my_all?
-
     unless block_given?
       i = 0
       while i < self.length do
@@ -50,7 +46,6 @@ module Enumerable
       end
       return true
     end
-
     bool = true
     i = 0
     while i < self.length do
@@ -60,8 +55,9 @@ module Enumerable
     bool
   end
 
-  def my_any?
+ # my any
 
+  def my_any?
     unless block_given?
       i = 0
       while i < self.length do
@@ -77,11 +73,11 @@ module Enumerable
       i += 1
     end
     bool
-
   end
 
-  def my_none?
+  # my none?
 
+  def my_none?
     unless block_given?
       i = 0
       while i < self.length do
@@ -109,7 +105,6 @@ module Enumerable
         counter += 1 if yield(n) || arg == n
       end
     end
-
     if arg
       my_each do |n|
         counter += 1 if arg == n
@@ -122,7 +117,6 @@ module Enumerable
   def my_count1(param = nil)
     counter = 0
     return length if param.nil? && !block_given?
-
     my_each do |i|
       condition = yield(i) if block_given?
       counter += 1 if condition || i == param
@@ -133,18 +127,20 @@ module Enumerable
     # my_map
 
   def my_map(prc=nil)
-    return to_enum(:my_map) unless block_given?
-    
+    return to_enum(:my_map) unless block_given? || !prc.nil?
     arr = []
     i = 0
-    while i < self.length do
-      arr << self[i] if yield(self[i])
-      i += 1
+    if block_given? and prc.nil?
+      my_each { |n| arr << yield(n) }
+      return arr
+    elsif !prc.nil?
+      my_each { |n| arr << prc.call(n)}
+      return arr
     end
-    arr
   end
 
 end
+
 puts "---------"
 puts "my_each"
 puts "--------"
@@ -201,3 +197,12 @@ p ["daniel", "jia", "kriti", "dave"].my_count { |s| s == s.upcase } # => 0
 p [1,2,3].my_count # => 3
 p [1,1,1,2,3].my_count(1) # => 3
 
+puts "------"
+puts "my_map"
+puts "------"
+
+p [1,2,3].my_map { |n| 2 * n } # => [2,4,6]
+p ["Hey", "Jude"].my_map { |word| word + "?" } # => ["Hey?", "Jude?"]
+p [false, true].my_map { |bool| !bool } # => [true, false]
+  my_proc = Proc.new {|num| num > 10 }
+p [18, 22, 5, 6].my_map(my_proc) {|num| num < 10 } # => true true false false
