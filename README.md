@@ -29,16 +29,17 @@
 
   <p align="center">
     This project is part of the Microverse curriculum in Ruby module!
-    <br />
+    <br/>
     <a href="https://github.com/adamclasic/enumerables"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-
+    <br/>
+    <br/>
+    <br/>
     <a href="https://repl.it/@Adamall/enum">View Demo</a>
-
+    <br/>
     <a href="https://github.com/adamclasic/enumerables/issues">Report Bug</a>
-
+    <br/>
     <a href="https://github.com/adamclasic/enumerables/issues">Request Feature</a>
+
   </p>
 </p>
 
