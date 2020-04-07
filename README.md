@@ -22,10 +22,10 @@
 <br />
 <p align="center">
   <a href="https://github.com/adamclasic/enumerables">
-    <img src="images/microverse.png" alt="Logo" width="80" height="80">
+    <img src="images/ruby.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Bubble Sort</h3>
+  <h3 align="center">enumerables</h3>
 
   <p align="center">
     This project is part of the Microverse curriculum in Ruby module!
@@ -34,7 +34,7 @@
     <br />
     <br />
 
-    <a href="https://repl.it/Adamall/bubblesort">View Demo</a>
+    <a href="https://repl.it/@Adamall/enum">View Demo</a>
 
     <a href="https://github.com/adamclasic/enumerables/issues">Report Bug</a>
 
@@ -55,7 +55,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://repl.it/@Adamall/bubblesort)
+[![Product Name Screen Shot][product-screenshot]](https://repl.it/@Adamall/enum)
 
 This is the first project of the Microverse Ruby Module
 
@@ -64,18 +64,7 @@ This is also the Assignment_1 of the [Odin project curriculum](https://www.theod
 <!-- ABOUT THE PROJECT -->
 ## Installation
 
-To test the code you need to write this at the end and execute it with [ruby](https://repl.it) : 
-
-```
-bubble = bubble_sort_by(%w[hi hello hey]) do |left, right|
-  left.length - right.length
-end
-
-p bubble_sort([1, 3, 42, 54, 21, 221, 31, 2, 0])
-puts
-p bubble
-
-```
+To test the code you need to write this at the end and execute it with [ruby](https://repl.it/@Adamall/enum) : 
 
 ### Built With
 This project was built using these technologies.
@@ -86,7 +75,7 @@ This project was built using these technologies.
 <!-- LIVE VERSION -->
 ## Live version
 
-You can see it working [here](https://repl.it/@Adamall/bubblesort)
+You can see it working [here](https://repl.it/@Adamall/enum)
 
 <!-- CONTACT -->
 ## Contributors
@@ -115,7 +104,7 @@ You can see it working [here](https://repl.it/@Adamall/bubblesort)
 [stars-url]: https://github.com/adamclasic/enumerables/stargazers
 [issues-shield]: https://img.shields.io/github/issues/adamclasic/enumerables.svg?style=flat-square
 [issues-url]: https://github.com/adamclasic/enumerables/issues
-[product-screenshot]: images/bubble_sort.png
+[product-screenshot]: images/enumerables.png
 
 ## 📝 License
 
