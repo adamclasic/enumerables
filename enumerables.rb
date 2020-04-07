@@ -23,6 +23,7 @@ module Enumerable
   end
 
   # my_select
+  # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
 
   def my_select
     return to_enum(:my_select) unless block_given?
