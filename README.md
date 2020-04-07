@@ -21,7 +21,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/adamclasic/enumerables">
+  <a href="https://repl.it/@Adamall/enum">
     <img src="images/ruby.png" alt="Logo" width="80" height="80">
   </a>
 
