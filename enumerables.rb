@@ -17,7 +17,7 @@ module Enumerable
     return to_enum(:my_each_with_index) unless block_given?
     i = 0
     while i < self.length do
-      yield(i,self[i])
+      yield(self[i], i)
       i += 1
     end
   end
@@ -157,4 +157,3 @@ def multiply_els(arr)
   return arr.my_inject(:*)
 end
 
-p multiply_els([2,4,5]) #=> 40
