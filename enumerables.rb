@@ -12,7 +12,7 @@ module Enumerable
   end
   
   # my_each_with_index
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
     i = 0
@@ -24,7 +24,7 @@ module Enumerable
 
   # my_select
   
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  
   def my_select
     return to_enum(:my_select) unless block_given?
     arr = []
@@ -37,8 +37,13 @@ module Enumerable
   end
   
  # my all
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-  def my_all?
+  
+  def my_all?(aa = nil)
+    if aa 
+
+      my_each { |elem| return false unless aa === elem}
+
+    end
     unless block_given?
       i = 0
       while i < self.length do
@@ -57,8 +62,13 @@ module Enumerable
   end
 
  # my any
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-  def my_any?
+  
+  def my_any?(aa = nil)
+    if aa 
+
+      my_each { |elem| return true unless aa === elem}
+
+    end
     unless block_given?
       i = 0
       while i < self.length do
@@ -77,8 +87,12 @@ module Enumerable
   end
 
   # my none?
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-  def my_none?
+  
+  def my_none?(aa = nil, &prc)
+    if aa
+      !my_any(aa, &prc)
+
+    end
     unless block_given?
       i = 0
       while i < self.length do
@@ -96,7 +110,7 @@ module Enumerable
     bool
 
   end
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  
   def my_count(arg=nil)
     return self.length if arg==nil && !block_given?
     counter = 0
@@ -115,7 +129,7 @@ module Enumerable
   end
 
   # my_map
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  
   def my_map(prc=nil)
     return to_enum(:my_map) unless block_given? || !prc.nil?
     arr = []
@@ -130,7 +144,7 @@ module Enumerable
   end
 
   # my_inject
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  
   def my_inject(init = nil, sym = nil)
     if block_given?
       if !init.nil?
@@ -152,8 +166,10 @@ module Enumerable
 end
 
 # multiply_els
-# rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+
 def multiply_els(arr)
   return arr.my_inject(:*)
 end
+
+
 
