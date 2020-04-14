@@ -1,7 +1,6 @@
+# rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 module Enumerable
-
   # my_each
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def my_each
     return to_enum(:my_each) unless block_given?
       i = 0
