@@ -30,7 +30,7 @@ module Enumerable
     arr = []
     i = 0
     while i < length
-      arr << [i] if yield([i])
+      arr << [i] if yield(self[i])
       i += 1
     end
     arr
@@ -47,7 +47,7 @@ module Enumerable
     unless block_given?
       i = 0
       while i < length
-        return false unless self.[i]
+        return false unless self[i]
 
         i += 1
       end
@@ -56,7 +56,7 @@ module Enumerable
     bool = true
     i = 0
     while i < length
-      bool = false unless yield([i])
+      bool = false unless yield(self[i])
       i += 1
     end
     bool
@@ -82,7 +82,7 @@ module Enumerable
     bool = false
     i = 0
     while i < length
-      bool = true if yield([i])
+      bool = true if yield(self[i])
       i += 1
     end
     bool
@@ -104,7 +104,7 @@ module Enumerable
     bool = true
     i = 0
     while i < length
-      bool = false if yield([i])
+      bool = false if yield(self[i])
       i += 1
     end
     bool
