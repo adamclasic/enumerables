@@ -1,3 +1,5 @@
+# rubocop:disable Style/CaseEquality, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+
 module Enumerable
   # my_each
   def my_each
@@ -17,7 +19,7 @@ module Enumerable
 
     i = 0
     while i < length
-      yield([i], i)
+      yield(self[i], i)
       i += 1
     end
   end
@@ -30,7 +32,7 @@ module Enumerable
     arr = []
     i = 0
     while i < length
-      arr << [i] if yield(self[i])
+      arr << self[i] if yield(self[i])
       i += 1
     end
     arr
@@ -41,7 +43,7 @@ module Enumerable
   def my_all?(aaa = nil)
     if aaa
 
-      my_each { |elem| return false unless aaa == elem }
+      my_each { |elem| return false unless aaa === elem }
 
     end
     unless block_given?
@@ -67,35 +69,37 @@ module Enumerable
   def my_any?(aaa = nil)
     if aaa
 
-      my_each { |elem| return true unless aaa == elem }
-
+      my_each { |elem| return true if aaa === elem }
     end
     unless block_given?
+      # p 'allalou'
       i = 0
       while i < length
-        return true unless [i]
+        return true unless self[i]
 
         i += 1
       end
       return false
     end
-    bool = false
-    i = 0
-    while i < length
-      bool = true if yield(self[i])
-      i += 1
-    end
+      # p 'abderrahmane'
+      bool = false
+      i = 0
+      while i < length
+        bool = true if yield(self[i])
+        i += 1
+      end
+
     bool
   end
 
   # my none?
 
   def my_none?(aaa = nil, &prc)
-    !my_any(aaa, &prc) if aaa
+    !my_any?(aaa, &prc) if aaa
     unless block_given?
       i = 0
       while i < length
-        return false unless [i]
+        return false unless self[i]
 
         i += 1
       end
@@ -163,6 +167,8 @@ module Enumerable
     num
   end
 end
+
+# rubocop:enable Style/CaseEquality, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
 # multiply_els
 
