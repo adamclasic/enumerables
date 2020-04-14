@@ -1,4 +1,4 @@
-# rubocop:disable Style/CaseEquality, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:disable Style/CaseEquality, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, ClassLength
 
 module Enumerable
   # my_each
@@ -81,14 +81,13 @@ module Enumerable
       end
       return false
     end
-      # p 'abderrahmane'
-      bool = false
-      i = 0
-      while i < length
-        bool = true if yield(self[i])
-        i += 1
-      end
-
+    # p 'abderrahmane'
+    bool = false
+    i = 0
+    while i < length
+      bool = true if yield(self[i])
+      i += 1
+    end
     bool
   end
 
@@ -168,7 +167,7 @@ module Enumerable
   end
 end
 
-# rubocop:enable Style/CaseEquality, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:enable Style/CaseEquality, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, ClassLength
 
 # multiply_els
 
