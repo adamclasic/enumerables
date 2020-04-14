@@ -1,5 +1,3 @@
-# rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-# rubocop:disable Metrics/ClassLength
 module Enumerable
   # my_each
   def my_each
@@ -25,7 +23,7 @@ module Enumerable
   end
 
   # my_select
-# rubocop:disable Metrics/ClassLength
+
   def my_select
     return to_enum(:my_select) unless block_given?
 
@@ -171,6 +169,3 @@ end
 def multiply_els(arr)
   arr.my_inject(:*)
 end
-
-# rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-# rubocop:enable Metrics/ClassLength
