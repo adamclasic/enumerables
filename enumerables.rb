@@ -1,117 +1,120 @@
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-module Enumerable
+# rubocop:disable Metrics/ClassLength
+module Enumerable 
   # my_each
   def my_each
     return to_enum(:my_each) unless block_given?
-      i = 0
-      while i < self.size do
-        yield(self.to_a[i])
-        i += 1
-      end
+
+    i = 0
+    while i < size
+      yield(to_a[i])
+      i += 1
+    end
   end
-  
+
   # my_each_with_index
-  
+
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
+
     i = 0
-    while i < self.length do
-      yield(self[i], i)
+    while i < length
+      yield([i], i)
       i += 1
     end
   end
 
   # my_select
-  
-  
+
   def my_select
     return to_enum(:my_select) unless block_given?
+
     arr = []
     i = 0
-    while i < self.length do
-      arr << self[i] if yield(self[i])
+    while i < length
+      arr << [i] if yield([i])
       i += 1
     end
     arr
   end
-  
- # my all
-  
-  def my_all?(aa = nil)
-    if aa 
 
-      my_each { |elem| return false unless aa === elem}
+  # my all
+
+  def my_all?(aaa = nil)
+    if aaa
+
+      my_each { |elem| return false unless aaa == elem }
 
     end
     unless block_given?
       i = 0
-      while i < self.length do
-        return false unless self[i]
+      while i < length
+        return false unless [i]
+
         i += 1
       end
       return true
     end
     bool = true
     i = 0
-    while i < self.length do
-      bool = false unless yield(self[i]) 
+    while i < length
+      bool = false unless yield([i])
       i += 1
     end
     bool
   end
 
- # my any
-  
-  def my_any?(aa = nil)
-    if aa 
+  # my any
 
-      my_each { |elem| return true unless aa === elem}
+  def my_any?(aaa = nil)
+    if aaa
+
+      my_each { |elem| return true unless aaa == elem }
 
     end
     unless block_given?
       i = 0
-      while i < self.length do
-        return true unless self[i]
+      while i < length
+        return true unless [i]
+
         i += 1
       end
       return false
     end
     bool = false
     i = 0
-    while i < self.length do
-      bool = true if yield(self[i]) 
+    while i < length
+      bool = true if yield([i])
       i += 1
     end
     bool
   end
 
   # my none?
-  
-  def my_none?(aa = nil, &prc)
-    if aa
-      !my_any(aa, &prc)
 
-    end
+  def my_none?(aaa = nil, &prc)
+    !my_any(aaa, &prc) if aaa
     unless block_given?
       i = 0
-      while i < self.length do
-        return false unless self[i]
+      while i < length
+        return false unless [i]
+
         i += 1
       end
       return true
     end
     bool = true
     i = 0
-    while i < self.length do
-      bool = false if yield(self[i]) 
+    while i < length
+      bool = false if yield([i])
       i += 1
     end
     bool
-
   end
-  
-  def my_count(arg=nil)
-    return self.length if arg==nil && !block_given?
+
+  def my_count(arg = nil)
+    return length if arg.nil? && !block_given?
+
     counter = 0
     i = 0
     if block_given?
@@ -124,26 +127,27 @@ module Enumerable
         counter += 1 if arg == n
       end
     end
-    return counter
+    counter
   end
 
   # my_map
-  
-  def my_map(prc=nil)
+
+  def my_map(prc = nil)
     return to_enum(:my_map) unless block_given? || !prc.nil?
+
     arr = []
     i = 0
     if block_given? and prc.nil?
       my_each { |n| arr << yield(n) }
-      return arr
+      arr
     elsif !prc.nil?
-      my_each { |n| arr << prc.call(n)}
-      return arr
+      my_each { |n| arr << prc.call(n) }
+      arr
     end
   end
 
   # my_inject
-  
+
   def my_inject(init = nil, sym = nil)
     if block_given?
       if !init.nil?
@@ -167,8 +171,5 @@ end
 # multiply_els
 
 def multiply_els(arr)
-  return arr.my_inject(:*)
+  arr.my_inject(:*)
 end
-
-
-
