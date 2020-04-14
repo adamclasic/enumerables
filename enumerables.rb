@@ -1,4 +1,4 @@
-# rubocop:disable Style/CaseEquality, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, ClassLength
+# rubocop:disable Style/CaseEquality, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
 module Enumerable
   # my_each
@@ -167,7 +167,7 @@ module Enumerable
   end
 end
 
-# rubocop:enable Style/CaseEquality, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, ClassLength
+# rubocop:enable Style/CaseEquality, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
 # multiply_els
 
