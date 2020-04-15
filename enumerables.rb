@@ -1,7 +1,6 @@
 # rubocop:disable Style/CaseEquality, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
 module Enumerable
-  # my_each
   def my_each
     return to_enum(:my_each) unless block_given?
 
@@ -12,8 +11,6 @@ module Enumerable
     end
   end
 
-  # my_each_with_index
-
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
 
@@ -23,8 +20,6 @@ module Enumerable
       i += 1
     end
   end
-
-  # my_select
 
   def my_select
     return to_enum(:my_select) unless block_given?
@@ -37,8 +32,6 @@ module Enumerable
     end
     arr
   end
-
-  # my all
 
   def my_all?(aaa = nil)
     if aaa
@@ -63,16 +56,15 @@ module Enumerable
     end
     bool
   end
+end
 
-  # my any
-
+module Enumerable
   def my_any?(aaa = nil)
     if aaa
 
       my_each { |elem| return true if aaa === elem }
     end
     unless block_given?
-      # p 'allalou'
       i = 0
       while i < length
         return true unless self[i]
@@ -81,7 +73,6 @@ module Enumerable
       end
       return false
     end
-    # p 'abderrahmane'
     bool = false
     i = 0
     while i < length
@@ -90,8 +81,6 @@ module Enumerable
     end
     bool
   end
-
-  # my none?
 
   def my_none?(aaa = nil, &prc)
     !my_any?(aaa, &prc) if aaa
@@ -130,8 +119,6 @@ module Enumerable
     counter
   end
 
-  # my_map
-
   def my_map(prc = nil)
     return to_enum(:my_map) unless block_given? || !prc.nil?
 
@@ -144,8 +131,6 @@ module Enumerable
       arr
     end
   end
-
-  # my_inject
 
   def my_inject(init = nil, sym = nil)
     if block_given?
@@ -166,11 +151,7 @@ module Enumerable
     num
   end
 end
-
 # rubocop:enable Style/CaseEquality, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-
-# multiply_els
-
 def multiply_els(arr)
   arr.my_inject(:*)
 end
