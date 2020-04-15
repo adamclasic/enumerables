@@ -56,50 +56,32 @@ module Enumerable
     end
     bool
   end
-end
 
-module Enumerable
   def my_any?(aaa = nil)
     if aaa
 
       my_each { |elem| return true if aaa === elem }
-    end
-    unless block_given?
+    elsif !block_given?
       i = 0
       while i < length
-        return true unless self[i]
+        return true if self[i]
 
         i += 1
       end
-      return false
+      # return false
+    else
+      i = 0
+      while i < length
+        return true if yield(self[i])
+
+        i += 1
+      end
     end
-    bool = false
-    i = 0
-    while i < length
-      bool = true if yield(self[i])
-      i += 1
-    end
-    bool
+    false
   end
 
   def my_none?(aaa = nil, &prc)
-    !my_any?(aaa, &prc) if aaa
-    unless block_given?
-      i = 0
-      while i < length
-        return false unless self[i]
-
-        i += 1
-      end
-      return true
-    end
-    bool = true
-    i = 0
-    while i < length
-      bool = false if yield(self[i])
-      i += 1
-    end
-    bool
+    !my_any?(aaa, &prc)
   end
 
   def my_count(arg = nil)
