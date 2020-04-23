@@ -38,4 +38,23 @@ RSpec.describe Enumerable do
       expect([1,2,3,8].my_select(&:odd?)).to eq([1, 3])
     end
   end
+
+  describe '#my_all?' do
+
+    it 'checks if it returns false for a condition' do
+      expect(%w[dog door cat].my_all? { |val| val.length > 3 }).to be_falsy
+    end
+
+    it 'checks if it returns true for a condition' do
+      expect(%w[dog door cat].my_all? { |val| val.length <= 3 }).to be_falsy
+    end
+
+    it 'checks if it returns false if array contain a nil' do
+      expect([1,2,3,nil].my_all?).to be_falsy
+    end
+
+    it 'checks if it returns true if array is empty' do
+      expect([].my_all?).to be_truthy
+    end
+  end
 end
