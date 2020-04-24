@@ -4,7 +4,7 @@ require_relative '../enumerables.rb'
 
 RSpec.describe Enumerable do
   let(:array) { [] }
-  describe "#my_each" do
+  describe '#my_each' do
     it 'checks if it returns Enumerator when no block is given' do
       expect(array.my_each).to be_a(Enumerator)
     end
@@ -14,7 +14,7 @@ RSpec.describe Enumerable do
     end
   end
 
-  describe "#my_each_with_index" do
+  describe '#my_each_with_index' do
     it 'checks if it returns Enumerator when no block is given' do
       expect(array.my_each_with_index).to be_a(Enumerator)
     end
@@ -28,11 +28,11 @@ RSpec.describe Enumerable do
     it 'checks if it returns Enumerator when no block is given' do
       expect(array.my_select).to be_a(Enumerator)
     end
-
+    # rubocop:disable Style/SymbolProc:
     it 'tests when my_select is invoked by an Array' do
       expect([1, 2, 3, 8].my_select { |n| n.even? }).to eq([2, 8])
     end
-
+    # rubocop:enable Style/SymbolProc:
     it 'tests when my_select is invoked by an Array of symbol' do
       expect([1, 2, 3, 8].my_select(&:odd?)).to eq([1, 3])
     end
@@ -131,7 +131,7 @@ RSpec.describe Enumerable do
       end
 
       it 'check when a Block is given' do
-        expect([5, 1, 2].my_inject() { |accum, elem| accum + elem }).to eql(8)
+        expect([5, 1, 2].my_inject { |accum, elem| accum + elem }).to eql(8)
       end
 
       it 'check when a Block and a Symbol is given' do
@@ -139,11 +139,11 @@ RSpec.describe Enumerable do
       end
 
       it 'check when two parameters are given' do
-        expect((5..10).my_inject(1, :*)).to eq(151200)
+        expect((5..10).my_inject(1, :*)).to eq(151_200)
       end
     end
 
-    describe "#multiply_els" do
+    describe '#multiply_els' do
       it 'check if #multiply_els is working' do
         expect(multiply_els([1, 2, 3, 4, 5])).to eq(120)
       end
